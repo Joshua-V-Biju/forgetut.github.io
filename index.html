@@ -20,6 +20,8 @@
     <li><a href="#part7">Part 7: Adding Advanced Items</a></li>
     <li><a href="#part8">Part 8: Adding an Advanced Block</a></li>
     <li><a href="#part9">Part 9: Adding Food and Fuel</a></li>
+    <li><a href="#part10">Part 10: Adding Custom Tooltips</a></li>
+    <li><a href="#part11">Part 11: Adding Custom Tags</a></li>
   </ul>
 </nav><br>
 <main>
@@ -424,6 +426,82 @@ This is basically saying that these blocks can only be mined by a diamond pickax
 }<br>
 </blockquote></li></ul>
     </div>
+    <div id="part10" style="background-color: #BEC5AD; padding: 10px; border-radius: 5px;">
+      <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 10: Adding Custom Tooltips</h3>
+      <ul>
+        <li>override the 'appendHoverText' method:<br><blockquote>
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {<br>
+      pTooltipComponents.add(Component.translatable("tooltip.tutorialmod.nova_core"));<br>
+        super.appendHoverText(pStack, pLevel, pTooltip, pFlag);<br>
+    }<br>
+}</blockquote></li>
+      <li>If you want to add shift to show additional information, add <blockquote> @Override<br>
+    public void appendHoverText(ItemStack pStack, TooltipContext pContext, List&lt;Component&gt; pTooltipComponents, TooltipFlag pTooltipFlag) {<br>
+        if(Screen.hasShiftDown()) {<br>
+            pTooltipComponents.add(Component.translatable("tooltip.tutorialmod.chisel.shift_down"));<br>
+
+        }else {<br>
+            pTooltipComponents.add(Component.translatable("tooltip.tutorialmod.chisel"));<br>
+        }<br>
+
+        super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);</blockquote></li>
+      <li>If you want to directly add it while registering, you can do so in the item's constructor or by overriding the `appendHoverText` method.<blockquote>public static final RegistryObject<Item> NOVA_CORE = ITEMS.register("nova_core", () -> new FuelItem(new Item.Properties(),30000){
+        @Override<br>
+        public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {<br>
+            pTooltipComponents.add(Component.translatable("tooltip.tutorialmod.nova_core"));<br>
+
+            super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);<br>
+        }<br>
+    });</blockquote></li>
+      </ul>
+    </div>
+    <div id="part11" style="background-color: #519872; padding: 10px; border-radius: 5px;">
+      <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 11: Adding Custom Tags</h3>
+      <ul>
+        <li>Create a class ModTags under tutorialmod/ModTags and add:<br><blockquote>public class ModTags {<br>
+    public static class Blocks {<br>
+
+        private static TagKey<Block> createTag(String name) {<br>
+            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID, name));<br>
+        }<br>
+
+
+    }<br>
+
+    public static class Items {<br>
+        public static final TagKey<Item> TRANSFORMABLE_ITEMS = createTag("transformable_items");<br>
+
+        private static TagKey<Item> createTag(String name) {<br>
+            return ItemTags.create(ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID, name));<br>
+        }<br>
+    }<br>
+}<br>
+</blockquote></li>
+      <li>Take a method, for example stepon, for checking if the specified item or block in on the block<br><blockquote>public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {<br>
+        super.stepOn(pLevel, pPos, pState, pEntity);<br>
+        if(pEntity instanceof ItemEntity itemEntity) {<br>
+            if(isValidItem(itemEntity.getItem())) {<br>
+                itemEntity.setItem(new ItemStack(Items.NETHERITE_INGOT, itemEntity.getItem().getCount()));<br>
+            }<br>
+            if(itemEntity.getItem().getItem() == ModItems.VOIDHEART_CORE.get()){<br>
+                itemEntity.setItem(new ItemStack(Items.EMERALD, itemEntity.getItem().getCount()));<br>
+            }<br>
+        }<br>
+    }<br>
+</blockquote> and change the if state to use the custom tag 'isValidItem':<br><blockquote>if(isValidItem(itemEntity.getItem())) {<br>
+                itemEntity.setItem(new ItemStack(Items.NETHERITE_INGOT, itemEntity.getItem().getCount()));<br>
+            }</blockquote> and create its method by right-clicking</li>
+       <li>Create a json file for the custom tag under data/tutorialmod/tags and add the necessary entries, for example<br><blockquote>{<br>
+  "values": [<br>
+    "tutorialmod:platinum_ingot",<br>
+    "tutorialmod:raw_platinum",<br>
+    "tutorialmod:storm_shard"<br>
+  ]<br>
+}</blockquote></li>     
+      </ul>
+</div>
 <br>
 </main>
 </body>
