@@ -151,7 +151,8 @@
     <li><a href="#part9">Part 9: Adding Food and Fuel</a></li>
     <li><a href="#part10">Part 10: Adding Custom Tooltips</a></li>
     <li><a href="#part11">Part 11: Adding Custom Tags</a></li>
-    <li><a href="#part12">Part 12: Implementing DataGen and Creating Non Blocks</a></li>
+    <li><a href="#part12">Part 12: Implementing DataGen</a></li>
+    <li><a href="#part13">Part 13: Adding Non-Block Blocks</a></li>
   </ul>
 </nav>
 <main>
@@ -888,6 +889,33 @@ This is basically saying that these blocks can only be mined by a diamond pickax
     }<br><br>
 }</blockquote></li><br>
     </ul></section>
+    <section id="part13" style="background-color: #519872; padding: 10px; border-radius: 5px;">
+      <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 13: Adding Non-Block Blocks</h3>
+      <ul>
+        <li>Add the items in ModBlocks: <br><blockquote>
+          public static final RegistryObject&lt;StairBlock&gt; PLATINUM_STAIRS = registerBlock("platinum_stairs",<br>
+            () -> new StairBlock(ModBlocks.PLATINUM_BLOCK.get().defaultBlockState(),<br>
+                    BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));<br>
+    public static final RegistryObject&lt;SlabBlock&gt; PLATINUM_SLAB = registerBlock("platinum_slab",<br>
+            () -> new SlabBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));<br><br>
+    public static final RegistryObject&lt;PressurePlateBlock&gt; PLATINUM_PRESSURE_PLATE = registerBlock("platinum_pressure_plate",<br>
+            () -> new PressurePlateBlock(BlockSetType.IRON, BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));<br>
+    public static final RegistryObject&lt;ButtonBlock&gt; PLATINUM_BUTTON = registerBlock("platinum_button",<br>
+            () -> new ButtonBlock(BlockSetType.IRON,5, BlockBehaviour.Properties.of().strength(3f).<br>
+                    requiresCorrectToolForDrops().noCollission()));<br><br>
+    public static final RegistryObject&lt;FenceBlock&gt; PLATINUM_FENCE = registerBlock("platinum_fence",<br>
+            () -> new FenceBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));<br>
+    public static final RegistryObject&lt;FenceGateBlock&gt; PLATINUM_FENCE_GATE = registerBlock("platinum_fence_gate",<br>
+            () -> new FenceGateBlock(WoodType.ACACIA, BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));<br>
+    public static final RegistryObject&lt;WallBlock&gt; PLATINUM_WALL = registerBlock("platinum_wall",<br>
+            () -> new WallBlock(BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops()));<br><br>
+    public static final RegistryObject&lt;DoorBlock&gt; PLATINUM_DOOR = registerBlock("platinum_door",<br>
+            () -> new DoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().noOcclusion()));<br>
+    public static final RegistryObject&lt;TrapDoorBlock&gt; PLATINUM_TRAP_DOOR = registerBlock("platinum_trap_door",<br>
+            () -> new TrapDoorBlock(BlockSetType.IRON, BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().noOcclusion()));<br>
+        </blockquote></li>
+        <li>Add it all in CreativeModTabs and Datagen as shown in Part 12. Also update the textures</li>
+      </ul>
 <br>
 </main>
 </body>
