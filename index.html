@@ -4,10 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mod Creation 1.21.1</title>
+    <style>
+        :root {
+            --bg: #dfe7d2;
+            --panel-1: #519872;
+            --panel-2: #bec5ad;
+            --panel-3: #d9e5c9;
+            --text: #1f2b20;
+            --accent: #244f3e;
+            --soft: #eef4ea;
+            --shadow: rgba(22, 34, 26, 0.15);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #a4b494 0%, #dfe7d2 100%);
+            color: var(--text);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 32px 20px 18px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: 0.04em;
+            color: #1b3228;
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+
+        nav {
+            max-width: 1250px;
+            margin: 0 auto 24px;
+            padding: 0 20px;
+        }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.35);
+            border: 1px solid rgba(36, 79, 62, 0.2);
+            border-radius: 999px;
+            text-decoration: none;
+            color: var(--accent);
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: translateY(-1px);
+        }
+
+        main {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 20px 32px;
+        }
+
+        section {
+            margin: 18px 0;
+            padding: 18px 20px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(21, 41, 30, 0.12);
+            box-shadow: 0 6px 16px var(--shadow);
+        }
+
+        section:nth-of-type(odd) {
+            background-color: var(--panel-1);
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--panel-2);
+        }
+
+        h3 {
+            margin: 0 0 12px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.4rem;
+            color: #14261d;
+        }
+
+        ol, ul {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        blockquote {
+            margin: 10px 0;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.38);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            overflow-wrap: anywhere;
+        }
+
+        a {
+            color: #123d2d;
+        }
+
+        code, pre {
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
+    </style>
 </head>
-<body style="background-color: #A4B494;">
+<body>
 <header>
-    <h1 style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Forge 1.21 Tutorial</h1>
+    <h1>Forge 1.21 Tutorial</h1>
 </header>
 <nav>
   <ul>
@@ -22,10 +151,11 @@
     <li><a href="#part9">Part 9: Adding Food and Fuel</a></li>
     <li><a href="#part10">Part 10: Adding Custom Tooltips</a></li>
     <li><a href="#part11">Part 11: Adding Custom Tags</a></li>
+    <li><a href="#part12">Part 12: Implementing DataGen and Creating Non Blocks</a></li>
   </ul>
-</nav><br>
+</nav>
 <main>
-    <div id="part1" style="background-color: #519872; padding: 10px; border-radius: 5px;">
+    <section id="part1" style="background-color: #519872; padding: 10px; border-radius: 5px;">
     <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 1: Setting Up the Development Environment</h3>
         <ol>
         <li>Download <b>Forge 1.21 MDK</b> from official site</li>
@@ -35,8 +165,8 @@
         <li>Change the mapping channel to parchment and version to 2024.07.28-1.21</li>
         <li>Go to <a href="https://parchmentmc.org/docs/getting-started">Parchment Documentation</a> and apply the first two changes</li>
     </ol>
-    </div>
-    <div id="part2" style="background-color: #BEC5AD; padding: 10px; border-radius: 5px;">
+    </section>
+    <section id="part2" style="background-color: #BEC5AD; padding: 10px; border-radius: 5px;">
     <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 2: Creating a Basic Mod</h3>
         <ol>
         <li>Create a new class 'ModItems' under examplemod/item</li>
@@ -69,8 +199,8 @@
 <li>Add the mod in creative menu tab</li>
 <li>Add crafting recipe if needed</li>
 <li>That's the basics of creating a simple mod you can now run modded minecraft.</li>
-    </div>
-    <div id="part3" style="background-color: #519872; padding: 10px; border-radius: 5px;">
+    </section>
+    <section id="part3" style="background-color: #519872; padding: 10px; border-radius: 5px;">
     <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 3: Adding a Block</h3>
         <ol>
         <li>Create a new class 'ModBlocks' under examplemod/block</li>
@@ -119,8 +249,8 @@
 
 
 
-    </div>
-    <div id="part4" style="background-color: #BEC5AD; padding: 10px; border-radius: 5px;">
+    </section>
+    <section id="part4" style="background-color: #BEC5AD; padding: 10px; border-radius: 5px;">
     <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 4: Adding Creative Menu Tabs</h3>
         <ol>
         <li>Create a new class 'ModCreativeModeTabs' under examplemod/item</li>
@@ -141,9 +271,9 @@
         <li>When adding a second tab, add the following code above .title <br><blockquote>.withTabsBefore(NEONVOID_ITEMS_TAB.getId())</blockquote></li>
         <li>Add the enlgish translation to the en_us file:<br><blockquote>{<br>
   "creativetab.tutorialmod.neonvoid_items": "NeonVoid Items",<br>
-}</li>
-    </div>
-    <div id="part5" style="background-color: #519872; padding: 10px; border-radius: 5px;">
+}</blockquote></li>
+    </section>
+    <section id="part5" style="background-color: #519872; padding: 10px; border-radius: 5px;">
     <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 5: Adding a Crafting Recipe</h3>
         <ol>
         <li>Create a new folder named recipe under the resources/data/tutorialmod directory</li>
@@ -198,8 +328,8 @@
   }
 
 }</blockquote></li>
-    </div>
-    <div id="part6" style="background-color: #BEC5AD; padding: 10px; border-radius: 5px;">
+    </section>
+    <section id="part6" style="background-color: #BEC5AD; padding: 10px; border-radius: 5px;">
     <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 6: Adding Mineability</h3>
         <ol>
         <li>Create a new directory under resources/assets/data/tutorial mod named loot_table and inside that add another directory named blocks. 
@@ -311,9 +441,9 @@ for example, create needs_diamond_tool.json and needs_iron_tool.json in the same
 }</blockquote>
 This is basically saying that these blocks can only be mined by a diamond pickaxe or better.
         </li>
-    </div>
-    <div id="part7" style="background-color: #519872; padding: 10px; border-radius: 5px;">
-    <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 7: Adding Advanced Items</h3>"
+    </section>
+    <section id="part7" style="background-color: #519872; padding: 10px; border-radius: 5px;">
+    <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 7: Adding Advanced Items</h3>
     <ul>
       <li>To Create an Advanced Item, just add the following code: <br><blockquote>
         public class ChiselItem extends Item {<br>
@@ -355,8 +485,8 @@ This is basically saying that these blocks can only be mined by a diamond pickax
       </blockquote></li>
       <li>Add <br><blockquote>public static final RegistryObject<Item> CHISEL = ITEMS.register("chisel", () -> new ChiselItem(new Item.Properties().durability(32)));</blockquote></li>
     </ul>
-    </div>
-    <div id="part8" style="background-color: #BEC5AD; padding: 10px; border-radius: 5px;">
+    </section>
+    <section id="part8" style="background-color: #BEC5AD; padding: 10px; border-radius: 5px;">
       <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 8: Adding an Advanced Block</h3>
       <ul>
         <li>Create a new package custom under tutorialmod/block</li>
@@ -398,9 +528,9 @@ This is basically saying that these blocks can only be mined by a diamond pickax
 <li>Add<br><blockquote>public static final RegistryObject<Block> ANCIENT_CRUCIBLE = registerBlock("ancient_crucible",
             () -> new MagicBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));</blockquote></li>
       </ul>
-    </div>
-    <div id="part9" style="background-color: #519872; padding: 10px; border-radius: 5px;">
-      <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 9: Adding Food and Fuel</h3>
+    </section>
+    <section id="part12" style="background-color: #519872; padding: 10px; border-radius: 5px;">
+      <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 12: Implementing DataGen and Creating Non Blocks</h3>
       <ul>
         <li>For Food, create class 'ModFoodProperties' under item, and add the following code:<br><blockquote>public class ModFoodProperties {<br>
     public static final FoodProperties STORMDUST_DONUT = new FoodProperties.Builder().nutrition(4).saturationModifier(0.25f)<br>
@@ -425,8 +555,8 @@ This is basically saying that these blocks can only be mined by a diamond pickax
     }<br>
 }<br>
 </blockquote></li></ul>
-    </div>
-    <div id="part10" style="background-color: #BEC5AD; padding: 10px; border-radius: 5px;">
+    </section>
+    <section id="part10" style="background-color: #BEC5AD; padding: 10px; border-radius: 5px;">
       <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 10: Adding Custom Tooltips</h3>
       <ul>
         <li>override the 'appendHoverText' method:<br><blockquote>
@@ -456,9 +586,9 @@ This is basically saying that these blocks can only be mined by a diamond pickax
         }<br>
     });</blockquote></li>
       </ul>
-    </div>
-    <div id="part11" style="background-color: #519872; padding: 10px; border-radius: 5px;">
-      <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 11: Adding Custom Tags</h3>
+    </section>
+    <section id="part12" style="background-color: #519872; padding: 10px; border-radius: 5px;">
+      <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 12: Implementing DataGen and Creating Non Blocks</h3>
       <ul>
         <li>Create a class ModTags under tutorialmod/ModTags and add:<br><blockquote>public class ModTags {<br>
     public static class Blocks {<br>
@@ -501,7 +631,263 @@ This is basically saying that these blocks can only be mined by a diamond pickax
   ]<br>
 }</blockquote></li>     
       </ul>
-</div>
+    </section>
+    <section id="part12" style="background-color: #BEC5AD; padding: 10px; border-radius: 5px;">
+      <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Part 12: Implementing DataGen</h3>
+    <ul>
+      <li>DataGen is a system that allows you to generate data for your mod, such as recipes, loot tables, and tags, using code instead of manually 
+        creating JSON files. This can help reduce errors and make it easier to manage your mod's data.</li>
+      <li>Create a datagen package, and under that add the following classes: 
+          <br>DataGenerators,<br> ModBlockLootTableProvider, <br>ModBlockStateProvider, <br>ModBlockTagProvider,<br>
+           ModItemModelProvider, <br>ModItemTagProvider, <br>ModRecipeProvider</li>
+      <li>Under ModBlockStateProvider, Add: <br><blockquote>
+        public class ModBlockStateProvider extends BlockStateProvider {<br>
+    public ModBlockStateProvider(PackOutput output,  ExistingFileHelper exFileHelper) {<br>
+        super(output, TutorialMod.MOD_ID, exFileHelper);<br>
+    }<br><br>
+    @Override<br>
+    protected void registerStatesAndModels() {<br>
+        blockWithItem(ModBlocks.ANCIENT_CRUCIBLE);<br>
+        blockWithItem(ModBlocks.PLATINUM_ORE);<br>
+        blockWithItem(ModBlocks.VOIDHEART_BEACON);<br>
+        blockWithItem(ModBlocks.STORMSHARD_BLOCK);<br>
+        blockWithItem(ModBlocks.PLATINUM_BLOCK);<br>
+        blockWithItem(ModBlocks.RAW_PLATINUM_BLOCK);<br>
+        blockWithItem(ModBlocks.PLATINUM_DEEPSLATE_ORE);<br><br>
+        stairsBlock(ModBlocks.PLATINUM_STAIRS.get(), blockTexture(ModBlocks.PLATINUM_BLOCK.get()));<br>
+        slabBlock(ModBlocks.PLATINUM_SLAB.get(), blockTexture(ModBlocks.PLATINUM_BLOCK.get()), blockTexture(ModBlocks.PLATINUM_BLOCK.get()));<br><br>
+        buttonBlock(ModBlocks.PLATINUM_BUTTON.get(), blockTexture(ModBlocks.PLATINUM_BLOCK.get()));<br>
+        pressurePlateBlock(ModBlocks.PLATINUM_PRESSURE_PLATE.get(), blockTexture(ModBlocks.PLATINUM_BLOCK.get()));<br><br>
+        fenceBlock(ModBlocks.PLATINUM_FENCE.get(), blockTexture(ModBlocks.PLATINUM_BLOCK.get()));<br>
+        fenceGateBlock(ModBlocks.PLATINUM_FENCE_GATE.get(), blockTexture(ModBlocks.PLATINUM_BLOCK.get()));<br>
+        wallBlock(ModBlocks.PLATINUM_WALL.get(), blockTexture(ModBlocks.PLATINUM_BLOCK.get()));<br><br>
+        doorBlockWithRenderType(ModBlocks.PLATINUM_DOOR.get(), modLoc("block/platinum_door_bottom"), modLoc("block/platinum_door_top"), "cutout");<br>
+        trapdoorBlockWithRenderType(ModBlocks.PLATINUM_TRAP_DOOR.get(), modLoc("block/platinum_trap_door"), true, "cutout");<br><br>
+        blockItem(ModBlocks.PLATINUM_STAIRS);<br>
+        blockItem(ModBlocks.PLATINUM_SLAB);<br>
+        blockItem(ModBlocks.PLATINUM_PRESSURE_PLATE);<br>
+        blockItem(ModBlocks.PLATINUM_FENCE_GATE);<br>
+        blockItem(ModBlocks.PLATINUM_TRAP_DOOR, "_bottom");<br>
+    }<br><br>
+    private void blockWithItem(RegistryObject&lt;Block&gt; blockRegistryObject) {<br>
+        simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));<br><br>
+    }<br><br>
+    private void blockItem(RegistryObject&lt;? extends Block&gt; blockRegistryObject) {<br>
+        simpleBlockItem(blockRegistryObject.get(), new ModelFile.UncheckedModelFile("tutorialmod:block/" +<br>
+                ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath()));<br>
+    }<br><br>
+    private void blockItem(RegistryObject&lt;? extends Block&gt; blockRegistryObject, String appendix) {<br>
+        simpleBlockItem(blockRegistryObject.get(), new ModelFile.UncheckedModelFile("tutorialmod:block/" +<br>
+                ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath() + appendix));<br>
+    }<br>
+}<br>
+      </blockquote></li>
+      <li>Under ModItemModelProvider, Add:<br><blockquote>
+        public class ModItemModelProvider extends ItemModelProvider {<br>
+    public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {<br>
+        super(output, TutorialMod.MOD_ID, existingFileHelper);<br>
+    }<br><br>
+    @Override<br>
+    protected void registerModels() {<br>
+        basicItem(ModItems.STORM_SHARD.get());<br>
+        basicItem(ModItems.RAW_PLATINUM.get());<br>
+        basicItem(ModItems.CHISEL.get());<br>
+        basicItem(ModItems.PLATINUM_INGOT.get());<br>
+        basicItem(ModItems.VOIDHEART_CORE.get());<br>
+        basicItem(ModItems.NOVA_CORE.get());<br>
+        basicItem(ModItems.STORMDUST_DONUT.get());<br><br>
+        buttonItem(ModBlocks.PLATINUM_BUTTON, ModBlocks.PLATINUM_BLOCK);<br>
+        fenceItem(ModBlocks.PLATINUM_FENCE, ModBlocks.PLATINUM_BLOCK);<br>
+        wallItem(ModBlocks.PLATINUM_WALL, ModBlocks.PLATINUM_BLOCK);<br>
+        simpleBlockItem(ModBlocks.PLATINUM_DOOR);<br><br>
+    }<br><br>
+    public void buttonItem(RegistryObject&lt;? extends Block&gt; block, RegistryObject&lt;Block&gt; baseBlock) {<br>
+        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), mcLoc("block/button_inventory"))<br>
+                .texture("texture",  ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID,<br>
+                        "block/" + ForgeRegistries.BLOCKS.getKey(baseBlock.get()).getPath()));<br>
+    }<br><br>
+    public void fenceItem(RegistryObject&lt;? extends Block&gt; block, RegistryObject&lt;Block&gt; baseBlock) {<br>
+        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), mcLoc("block/fence_inventory"))<br>
+                .texture("texture",  ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID,<br>
+                        "block/" + ForgeRegistries.BLOCKS.getKey(baseBlock.get()).getPath()));<br>
+    }<br><br>
+    public void wallItem(RegistryObject&lt;? extends Block&gt; block, RegistryObject&lt;Block&gt; baseBlock) {<br>
+        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), mcLoc("block/wall_inventory"))<br>
+                .texture("wall",  ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID,<br>
+                        "block/" + ForgeRegistries.BLOCKS.getKey(baseBlock.get()).getPath()));<br>
+    }<br><br>
+    private ItemModelBuilder simpleBlockItem(RegistryObject&lt;? extends Block&gt; item) {<br>
+        return withExistingParent(item.getId().getPath(),<br>
+                ResourceLocation.parse("item/generated")).texture("layer0",<br>
+                ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID,"item/" + item.getId().getPath()));<br>
+    }<br><br>
+}<br>
+      </blockquote>
+      </li>
+      <li>Under ModBlockTagProvider, Add:<br><blockquote>
+        public class ModBlockTagProvider extends BlockTagsProvider {<br>
+    public ModBlockTagProvider(PackOutput output, CompletableFuture&lt;HolderLookup.Provider&gt; lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {<br>
+        super(output, lookupProvider, TutorialMod.MOD_ID, existingFileHelper);<br>
+    }<br><br>
+    @Override<br>
+    protected void addTags(HolderLookup.Provider p_256380_) {<br>
+        tag(BlockTags.MINEABLE_WITH_PICKAXE)<br>
+                .add(ModBlocks.ANCIENT_CRUCIBLE.get())<br>
+                .add(ModBlocks.STORMSHARD_BLOCK.get())<br>
+                .add(ModBlocks.VOIDHEART_BEACON.get())<br>
+                .add(ModBlocks.PLATINUM_BLOCK.get())<br>
+                .add(ModBlocks.RAW_PLATINUM_BLOCK.get())<br>
+                .add(ModBlocks.PLATINUM_DEEPSLATE_ORE.get())<br>
+                .add(ModBlocks.PLATINUM_ORE.get());<br><br>
+
+        tag(BlockTags.NEEDS_IRON_TOOL)<br>
+                .add(ModBlocks.PLATINUM_BLOCK.get())<br>
+                .add(ModBlocks.RAW_PLATINUM_BLOCK.get())<br>
+                .add(ModBlocks.PLATINUM_DEEPSLATE_ORE.get())<br>
+                .add(ModBlocks.PLATINUM_ORE.get());<br><br>
+
+        tag(BlockTags.NEEDS_DIAMOND_TOOL)<br>
+                .add(ModBlocks.ANCIENT_CRUCIBLE.get())<br>
+                .add(ModBlocks.STORMSHARD_BLOCK.get())<br>
+                .add(ModBlocks.VOIDHEART_BEACON.get());<br><br>
+
+        tag(BlockTags.FENCES).add(ModBlocks.PLATINUM_FENCE.get());<br>
+        tag(BlockTags.FENCE_GATES).add(ModBlocks.PLATINUM_FENCE_GATE.get());<br>
+        tag(BlockTags.WALLS).add(ModBlocks.PLATINUM_WALL.get());<br><br>
+
+    }<br>
+}<br>
+      </blockquote></li>
+      <li>Under ModItemTagProvider, Add:<br><blockquote>
+        public class ModItemTagProvider extends ItemTagsProvider {<br>
+    public ModItemTagProvider(PackOutput packOutput, CompletableFuture&lt;HolderLookup.Provider&gt; completableFuture, CompletableFuture&lt;TagLookup&lt;Block&gt;&gt; lookupCompletableFuture, @Nullable ExistingFileHelper existingFileHelper) {<br>
+        super(packOutput, completableFuture, lookupCompletableFuture, TutorialMod.MOD_ID, existingFileHelper);<br>
+    }<br><br>
+    @Override<br>
+    protected void addTags(HolderLookup.Provider provider) {<br>
+        tag(ModTags.Items.TRANSFORMABLE_ITEMS)<br>
+                .add(ModItems.STORM_SHARD.get())<br>
+                .add(ModItems.PLATINUM_INGOT.get());<br>
+    }<br>
+}<br>
+      </blockquote></li>
+      <li>Under ModRecipeProvider, Add:<br><blockquote>public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {<br><br>
+    public ModRecipeProvider(PackOutput p_248933_, CompletableFuture&lt;HolderLookup.Provider&gt; p_333797_) {<br>
+        super(p_248933_, p_333797_);<br>
+    }<br><br>
+    @Override<br>
+    protected void buildRecipes(RecipeOutput recipeOutput) {<br>
+        List&lt;ItemLike&gt; PLATINUM_SMELTABLES = List.of(ModItems.RAW_PLATINUM.get(),<br>
+                ModBlocks.PLATINUM_ORE.get(),ModBlocks.PLATINUM_DEEPSLATE_ORE.get());<br><br>
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.PLATINUM_BLOCK.get())<br>
+                .pattern("AAA")<br>
+                .pattern("AAA")<br>
+                .pattern("AAA")<br>
+                .define('A',ModItems.PLATINUM_INGOT.get())<br>
+                .unlockedBy(getHasName(ModItems.PLATINUM_INGOT.get()), has(ModItems.PLATINUM_INGOT.get())).save(recipeOutput);<br><br>
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.PLATINUM_INGOT.get(),9)<br>
+                        .requires(ModBlocks.PLATINUM_BLOCK.get())<br>
+                        .unlockedBy(getHasName(ModBlocks.PLATINUM_BLOCK.get()), has(ModBlocks.PLATINUM_BLOCK.get())).save(recipeOutput);<br><br>
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.RAW_PLATINUM_BLOCK.get())<br>
+                .pattern("AAA")<br>
+                .pattern("AAA")<br>
+                .pattern("AAA")<br>
+                .define('A',ModItems.RAW_PLATINUM.get())<br>
+                .unlockedBy(getHasName(ModItems.RAW_PLATINUM.get()), has(ModItems.RAW_PLATINUM.get())).save(recipeOutput);<br><br>
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RAW_PLATINUM.get(),9)<br>
+                .requires(ModBlocks.RAW_PLATINUM_BLOCK.get())<br>
+                .unlockedBy(getHasName(ModBlocks.RAW_PLATINUM_BLOCK.get()), has(ModBlocks.RAW_PLATINUM_BLOCK.get())).save(recipeOutput);<br><br>
+
+        oreSmelting(recipeOutput, PLATINUM_SMELTABLES, RecipeCategory.MISC, ModItems.PLATINUM_INGOT.get(), 0.25f,200,"platinum");<br>
+        oreBlasting(recipeOutput, PLATINUM_SMELTABLES, RecipeCategory.MISC, ModItems.PLATINUM_INGOT.get(), 0.25f,200,"platinum");<br><br>
+
+        stairBuilder(ModBlocks.PLATINUM_STAIRS.get(),Ingredient.of(ModItems.PLATINUM_INGOT.get())).group("platinum_ingot")<br>
+                .unlockedBy(getHasName(ModItems.PLATINUM_INGOT.get()), has(ModItems.PLATINUM_INGOT.get())).save(recipeOutput);<br>
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.PLATINUM_SLAB.get(), ModItems.PLATINUM_INGOT.get());<br><br>
+
+        buttonBuilder(ModBlocks.PLATINUM_BUTTON.get(), Ingredient.of(ModItems.PLATINUM_INGOT.get())).group("platinum_ingot")<br>
+                .unlockedBy(getHasName(ModItems.PLATINUM_INGOT.get()), has(ModItems.PLATINUM_INGOT.get())).save(recipeOutput);<br>
+        pressurePlate(recipeOutput, ModBlocks.PLATINUM_PRESSURE_PLATE.get(), ModItems.PLATINUM_INGOT.get());<br><br>
+
+        fenceBuilder(ModBlocks.PLATINUM_FENCE.get(), Ingredient.of(ModItems.PLATINUM_INGOT.get())).group("platinum_ingot")<br>
+                .unlockedBy(getHasName(ModItems.PLATINUM_INGOT.get()), has(ModItems.PLATINUM_INGOT.get())).save(recipeOutput);<br>
+        fenceGateBuilder(ModBlocks.PLATINUM_FENCE_GATE.get(), Ingredient.of(ModItems.PLATINUM_INGOT.get())).group("platinum_ingot")<br>
+                .unlockedBy(getHasName(ModItems.PLATINUM_INGOT.get()), has(ModItems.PLATINUM_INGOT.get())).save(recipeOutput);<br>
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.PLATINUM_WALL.get(), ModItems.PLATINUM_INGOT.get());<br><br>
+
+        doorBuilder(ModBlocks.PLATINUM_DOOR.get(), Ingredient.of(ModItems.PLATINUM_INGOT.get())).group("platinum_ingot")<br>
+                .unlockedBy(getHasName(ModItems.PLATINUM_INGOT.get()), has(ModItems.PLATINUM_INGOT.get())).save(recipeOutput);<br>
+        trapdoorBuilder(ModBlocks.PLATINUM_TRAP_DOOR.get(), Ingredient.of(ModItems.PLATINUM_INGOT.get())).group("platinum_ingot")<br>
+                .unlockedBy(getHasName(ModItems.PLATINUM_INGOT.get()), has(ModItems.PLATINUM_INGOT.get())).save(recipeOutput);<br><br>
+    }<br><br>
+    protected static void oreSmelting(RecipeOutput recipeOutput, List&lt;ItemLike&gt; pIngredients, RecipeCategory pCategory, ItemLike pResult,<br>
+                                      float pExperience, int pCookingTIme, String pGroup) {<br>
+        oreCooking(recipeOutput, RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new, pIngredients, pCategory, pResult,<br>
+                pExperience, pCookingTIme, pGroup, "_from_smelting");<br>
+    }<br><br>
+    protected static void oreBlasting(RecipeOutput recipeOutput, List&lt;ItemLike&gt; pIngredients, RecipeCategory pCategory, ItemLike pResult,<br>
+                                      float pExperience, int pCookingTime, String pGroup) {<br>
+        oreCooking(recipeOutput, RecipeSerializer.BLASTING_RECIPE, BlastingRecipe::new, pIngredients, pCategory, pResult,<br>
+                pExperience, pCookingTime, pGroup, "_from_blasting");<br>
+    }<br><br>
+    protected static &lt;T extends AbstractCookingRecipe&gt; void oreCooking(RecipeOutput recipeOutput, RecipeSerializer&lt;T&gt; pCookingSerializer, AbstractCookingRecipe.Factory&lt;T&gt; factory,<br>
+                                                                       List&lt;ItemLike&gt; pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup, String pRecipeName) {<br>
+        for(ItemLike itemlike : pIngredients) {<br>
+            SimpleCookingRecipeBuilder.generic(Ingredient.of(itemlike), pCategory, pResult, pExperience, pCookingTime, pCookingSerializer, factory).group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike))<br>
+                    .save(recipeOutput, TutorialMod.MOD_ID + ":" + getItemName(pResult) + pRecipeName + "_" + getItemName(itemlike));<br>
+        }<br>
+    }<br><br>
+}</blockquote></li><br>
+    <li>Under ModBlockLootProvider, Add:<br><blockquote>public class ModBlockLootTableProvider extends BlockLootSubProvider {<br>
+    protected ModBlockLootTableProvider(HolderLookup.Provider p_345174_) {<br>
+        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), p_345174_);<br>
+    }<br><br>
+    @Override<br>
+    protected void generate() {<br>
+        dropSelf(ModBlocks.PLATINUM_BLOCK.get());<br>
+        dropSelf(ModBlocks.RAW_PLATINUM_BLOCK.get());<br>
+        dropSelf(ModBlocks.STORMSHARD_BLOCK.get());<br>
+        dropSelf(ModBlocks.VOIDHEART_BEACON.get());<br>
+        dropSelf(ModBlocks.ANCIENT_CRUCIBLE.get());<br><br>
+
+        this.add(ModBlocks.PLATINUM_ORE.get(),<br>
+                block -> createOreDrop(ModBlocks.PLATINUM_ORE.get(), ModItems.RAW_PLATINUM.get()));<br>
+        this.add(ModBlocks.PLATINUM_DEEPSLATE_ORE.get(),<br>
+                block -> createMutipleOreDrops(ModBlocks.PLATINUM_DEEPSLATE_ORE.get(),ModItems.RAW_PLATINUM.get(),2,4));<br><br>
+
+        dropSelf(ModBlocks.PLATINUM_STAIRS.get());<br>
+        this.add(ModBlocks.PLATINUM_SLAB.get(),<br>
+                block -> createSlabItemTable(ModBlocks.PLATINUM_SLAB.get()));<br><br>
+
+        dropSelf(ModBlocks.PLATINUM_BUTTON.get());<br>
+        dropSelf(ModBlocks.PLATINUM_PRESSURE_PLATE.get());<br><br>
+        dropSelf(ModBlocks.PLATINUM_WALL.get());<br>
+        dropSelf(ModBlocks.PLATINUM_FENCE.get());<br>
+        dropSelf(ModBlocks.PLATINUM_FENCE_GATE.get());<br><br>
+        this.add(ModBlocks.PLATINUM_DOOR.get(),<br>
+                block -> createDoorTable(ModBlocks.PLATINUM_DOOR.get()));<br>
+        dropSelf(ModBlocks.PLATINUM_TRAP_DOOR.get());<br><br>
+    }<br><br>
+    protected LootTable.Builder createMutipleOreDrops(Block p_251306_, Item item, float minDrops, float maxDrops) {<br>
+        HolderLookup.RegistryLookup&lt;Enchantment&gt; registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);<br>
+        return this.createSilkTouchDispatchTable(<br>
+                        p_251306_, this.applyExplosionDecay(<br>
+                        p_251306_, LootItem.lootTableItem(item)<br>
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(minDrops, maxDrops)))<br>
+                                .apply(ApplyBonusCount.addOreBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))<br>
+                )<br>
+        );<br>
+    }<br><br>
+    @Override<br>
+    protected Iterable&lt;Block&gt; getKnownBlocks() {<br>
+        return ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;<br>
+    }<br><br>
+}</blockquote></li><br>
+    </ul></section>
 <br>
 </main>
 </body>
